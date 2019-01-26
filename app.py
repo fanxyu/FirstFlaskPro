@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 
 
 app = Flask(__name__)
@@ -6,7 +7,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    user_agent = request.headers.get('User_Agent')
+    print(user_agent)
+    return 'Hello World!,your agent is %s' %user_agent
 
 
 @app.route('/user/<path:id>')
